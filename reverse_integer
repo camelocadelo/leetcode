@@ -1,0 +1,23 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        rev = 0
+        if x > 0:
+            if abs(x) >= 2**31 - 1):
+                return 0
+            else:
+                while (x!=0):
+                    pop = x%10
+                    x  = x//10
+                    rev = rev*10 + pop
+        elif x < 0:
+            if abs(x) >= 2**31:
+                return 0
+            else:
+                num = abs(x)
+                while (num!=0):
+                    pop = num%10
+                    num = num//10
+                    rev = rev * 10 + pop
+                rev = rev * (-1)
+        return rev
+                
