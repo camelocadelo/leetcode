@@ -1,0 +1,45 @@
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        count = 0
+        bin_x = bin(x)
+        bin_y = bin(y)
+        
+        list_x = list(bin_x)
+        list_y = list(bin_y)
+        
+        list_x1 = list_x[2:]
+        list_y1 = list_y[2:]
+        
+        length_y = len(list_y1)
+        length_x = len(list_x1)
+        new_list = []
+        
+        if length_y > length_x:
+            difference = length_y - length_x
+            for i in range(difference):
+                new_list.append('0')
+            new_list = new_list + list_x1
+            for a, b in zip(list_y1, new_list):
+                if a!=b:
+                    count = count + 1
+                else:
+                    continue
+        elif length_x > length_y:
+            difference = length_x - length_y
+            for i in range(difference):
+                new_list.append('0')
+            new_list = new_list + list_y1
+            for a, b in zip(list_x1, new_list):
+                if a!=b:
+                    count = count + 1
+                else:
+                    continue
+        elif length_x == length_y:
+            for a, b in zip(list_x1, list_y1):
+                if a!=b:
+                    count = count + 1
+                else:
+                    continue
+                    
+        return count
+        
