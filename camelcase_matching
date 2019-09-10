@@ -1,0 +1,29 @@
+
+queries = ["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"]
+
+pattern = "FB"
+
+def convert_to_pattern(something:str):
+	new_string = ""
+	for i in range(len(something)):
+		if (something[i].isupper() == True):
+			new_string = new_string + something[i]
+	return new_string
+			
+patternized_queries = []
+for i in range(len(queries)):
+	new_entry = convert_to_pattern(queries[i])
+	patternized_queries.append(new_entry)
+
+print(patternized_queries)
+
+result_array = []
+
+print(result_array)
+for i in range(len(patternized_queries)):
+	if patternized_queries[i] == pattern:
+		result_array.append(True)
+	else:
+		result_array.append(False)
+	
+print(result_array)
