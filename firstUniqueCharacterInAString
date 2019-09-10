@@ -1,0 +1,12 @@
+from collections import Counter
+
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        result = -1
+        counter = Counter(s)
+        d_counter = dict(counter)       
+        for key,value in d_counter.items():
+            if value == 1:
+                result = s.index(key)
+                break
+        return result
