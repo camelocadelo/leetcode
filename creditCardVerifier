@@ -1,0 +1,39 @@
+import sys
+import math
+
+# Auto-generated code below aims at helping you parse
+# the standard input according to the problem statement.
+
+n = int(input())
+for i in range(n):
+    card = input()
+    card1 = card.replace(" ", "")
+    card_reverse = card1[::-1]
+    card_evens = card_reverse[1::2]
+    card_evens_list = list(card_evens)
+    card_odds = card_reverse[0::2]
+    card_odds_list = list(card_odds)
+    def step1(cart):
+        list1 = []
+        for el in cart:
+            test = int(el) * 2
+            if test>9:
+                list1.append(test - 9)
+            else:
+                list1.append(test)
+        return list1
+    
+    my_list = step1(card_evens_list)
+    sum1 = sum(my_list)
+    card_odds_list = [ int(x) for x in card_odds_list ]
+    sum2 = sum(card_odds_list)
+    total_sum = sum1 + sum2
+    
+    if total_sum%10 == 0:
+        print("YES")
+    else:
+        print("NO")
+
+
+# Write an action using print
+# To debug: print("Debug messages...", file=sys.stderr)
