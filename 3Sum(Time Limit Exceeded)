@@ -1,0 +1,15 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        final_result = []
+        for i in range(len(nums)-2):
+            for j in range(i+1,len(nums)-1):
+                for k in range(j+1, len(nums)):
+                    L = []
+                    a = nums[i]
+                    b = nums[j]
+                    c = nums[k]
+                    L.extend((a, b, c))
+                    L.sort()
+                    if (sum(L) == 0) and (L not in final_result):
+                        final_result.append(L)
+        return final_result
