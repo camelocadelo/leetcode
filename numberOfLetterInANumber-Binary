@@ -1,0 +1,47 @@
+import sys
+import math
+
+# Auto-generated code below aims at helping you parse
+# the standard input according to the problem statement.
+
+start, n = [int(i) for i in input().split()]
+
+# Write an action using print
+# To debug: print("Debug messages...", file=sys.stderr)
+def int2binlist(integer):
+	binery = bin(integer)
+	binery_list = list(binery)
+	binery_list2 = binery_list[2:]
+	return binery_list2
+	
+def spell_list(listik):
+	spelled_list = []
+	for element in listik:
+		if element == '1':
+			spelled_list.append('one')
+		elif element == '0':
+			spelled_list.append('zero')
+	return spelled_list
+
+def concatenate_list(listik):
+	new_string = ""
+	for single_el in listik:
+		new_string = new_string + single_el
+	return new_string
+	
+def get_length(stringi):
+	return len(stringi)
+
+result = []
+result.append(start)
+	
+for i in range(n):
+    number = result.pop(0)
+    my_int2binlist = int2binlist(number)
+    my_spelled_list = spell_list(my_int2binlist)
+    my_concatenated_list = concatenate_list(my_spelled_list)
+    my_length = get_length(my_concatenated_list)
+    result.append(my_length)
+
+print(result[0])
+    
