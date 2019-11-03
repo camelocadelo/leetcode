@@ -1,0 +1,35 @@
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        def divdiv(numerator, denominator):
+            count = 0
+            while (numerator>=denominator):
+                numerator = numerator - denominator
+                count += 1
+            return count
+        if (dividend == 0):
+            result = 0
+            return result 
+        elif (dividend < 0 and divisor > 0):
+            dividend = - dividend
+            my_count = divdiv(dividend, divisor)
+            result = -1
+            result *= my_count
+            return result
+        elif (dividend > 0 and divisor <0):
+            divisor = -divisor
+            result = -1
+            my_count = divdiv(dividend, divisor)
+            result *= my_count
+            return result
+        elif (dividend > 0 and divisor > 0):
+            result = 1
+            my_count = divdiv(dividend, divisor)
+            result *= my_count
+            return result
+        elif (dividend < 0 and divisor < 0):
+            dividend = -dividend
+            divisor = -divisor
+            result = 1
+            my_count = divdiv(dividend, divisor)
+            result *= my_count
+            return result
