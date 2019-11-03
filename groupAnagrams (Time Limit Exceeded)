@@ -1,0 +1,16 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        strs_sorted = []
+        result = []
+        for el in strs:
+            temp = ''.join(sorted(el))
+            strs_sorted.append(temp)
+        my_groups = list(set(strs_sorted))
+        for i in range(len(my_groups)):
+            var = my_groups.pop(0)
+            my_list = []
+            for el in strs:
+                if var == ''.join(sorted(el)):
+                    my_list.append(el)
+            result.append(my_list)
+        return result
