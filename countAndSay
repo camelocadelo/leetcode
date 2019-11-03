@@ -1,0 +1,22 @@
+import itertools
+
+countAndSay = ['1']
+
+for i in range(5):
+	temp = countAndSay[-1]
+	for k, g in itertools.groupby(temp):
+		var1 = k
+		var2 = list(g)
+		#print (var1, var2)
+		var1_1 = str(var1)
+		#print(var1_1)
+		my_length = str(len(var2))
+		new_string = []
+		new_string.append(my_length)
+		new_string.append(var1_1)
+		result = ''
+		result = result.join(new_string)
+		#print(result)
+	countAndSay.append(result)
+	
+print(countAndSay)
