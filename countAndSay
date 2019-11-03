@@ -1,22 +1,14 @@
-import itertools
-
-countAndSay = ['1']
-
-for i in range(5):
-	temp = countAndSay[-1]
-	for k, g in itertools.groupby(temp):
-		var1 = k
-		var2 = list(g)
-		#print (var1, var2)
-		var1_1 = str(var1)
-		#print(var1_1)
-		my_length = str(len(var2))
-		new_string = []
-		new_string.append(my_length)
-		new_string.append(var1_1)
-		result = ''
-		result = result.join(new_string)
-		#print(result)
-	countAndSay.append(result)
-	
-print(countAndSay)
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        countAndSay = ['1']
+        for i in range(29):
+            temp = countAndSay[-1]
+            my_res = []
+            my_pool = [''.join(g) for _, g in itertools.groupby(temp)]
+            for string in my_pool:
+                my_res.append(str(len(string)))
+                my_res.append(string[0])
+            result = ''
+            result = result.join(my_res)
+            countAndSay.append(result)
+        return(countAndSay[n-1])
