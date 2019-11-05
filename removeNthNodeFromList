@@ -41,3 +41,19 @@ def removeNthFromEnd(head, n):
 		first = first.next
 	first.next = first.next.next
 	return dummy.next
+	
+#1-pass 2-pointers algorithm
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        dummy = ListNode(0)
+        dummy.next = head
+        first = dummy
+        second = dummy
+        #Advances the first pointer so that the gap btwn first and second nodes is n nodes apart
+        for i in range(1, n+2):
+            first = first.next
+        while (first is not None):
+            first = first.next
+            second = second.next
+        second.next = second.next.next
+        return dummy.next
