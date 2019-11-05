@@ -23,7 +23,9 @@ class Solution:
                 newNode.next = rootNode
                 rootNode = newNode
             return rootNode
-            
+
+
+#2-pass algorithm
 def removeNthFromEnd(head, n):
 	dummy = ListNode(0)
 	dummy.next = head
