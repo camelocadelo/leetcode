@@ -1,0 +1,65 @@
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        current = ListNode(-1) # dummy node for head
+        head = current
+        while l1 and l2:
+            if l1.val < l2.val:
+                current.next = l1
+                l1 = l1.next
+            else:
+                current.next = l2
+                l2 = l2.next
+            current = current.next
+        current.next = l1 if l1 else l2
+        return head.next
+        
+ #via Lists
+ # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        my_list = []
+        def llist_to_list(lka):
+            while lka.next is not None:
+                lka = lka.next
+                temp_val = lka.val
+                my_list.append(temp_val)
+        if l1 is not None and l2 is not None:
+            my_list.append(l1.val)
+            llist_to_list(l1)
+            my_list.append(l2.val)
+            llist_to_list(l2)
+            my_list.sort()
+            my_list = my_list[::-1]
+            my_root = ListNode(my_list[0])
+            for el in my_list[1:]:
+                new_node = ListNode(el)
+                new_node.next = my_root
+                my_root = new_node
+        elif l1 is not None and l2 is None:
+            my_list.append(l1.val)
+            llist_to_list(l1)
+            my_list.sort()
+            my_list = my_list[::-1]
+            my_root = ListNode(my_list[0])
+            for el in my_list[1:]:
+                new_node = ListNode(el)
+                new_node.next = my_root
+                my_root = new_node
+        elif l1 is None and l2 is not None:
+            my_list.append(l2.val)
+            llist_to_list(l2)
+            my_list.sort()
+            my_list = my_list[::-1]
+            my_root = ListNode(my_list[0])
+            for el in my_list[1:]:
+                new_node = ListNode(el)
+                new_node.next = my_root
+                my_root = new_node
+        else:
+            my_root = None
+        return my_root
