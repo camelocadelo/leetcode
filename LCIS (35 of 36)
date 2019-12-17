@@ -1,0 +1,40 @@
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        def isIncreasing(my_list):
+            return all(x <= y for x, y in zip(my_list, my_list[1:]))
+        def strictIncreasing(my_list):
+            return all(x<y for x, y in zip(my_list, my_list[1:]))
+        def isSame(my_list):
+            return all(x == y for x, y in zip(my_list, my_list[1:]))
+        def removeDuplicates(temp_array):
+            temp_array = [item for item in temp_array if item[0] != item[1]]
+            return temp_array
+        if len(nums) == 0:
+            return 0
+        elif len(nums) == 1:
+            return 1
+        elif isIncreasing(nums[::-1]):
+            return 1
+        elif isIncreasing(nums):
+            if isSame(nums):
+                return 1
+            elif strictIncreasing(nums):
+                return len(nums)
+            else:
+                zipped = list(zip(nums, nums[1:]))
+                zipped = removeDuplicates(zipped)
+                res = len(zipped)+1
+                return res
+        else:
+            zipped_list = list(zip(nums, nums[1:]))
+            zipped_list = removeDuplicates(zipped_list)
+            my_array = []
+            for i in range(len(zipped_list)):
+                if zipped_list[i][0] > zipped_list[i][1]:
+                    my_array.append(i)
+            result_array = []
+            result_array.append(my_array[0] + 1)
+            result_array.append(len(nums) - my_array[-1] - 1)
+            for x, y in zip(my_array, my_array[1:]):
+                result_array.append(y-x)
+            return max(result_array)
