@@ -1,0 +1,44 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var sum_of_array = function(nums) {
+    let result = 0;
+    for (index = 0; index < nums.length; index++) {
+        result += nums[index];
+    }
+    return result;
+};
+
+var maxSubArray = function(nums) {
+	let i = 0;
+	let length;
+	let temp_subarray = [];
+	let var_result = Number.NEGATIVE_INFINITY;
+	//let result_array = [];
+    let index;
+    
+    for (index = 0; index<nums.length; index++) {
+        if (var_result < nums[index]) {
+            var_result = nums[index];
+        }
+    }
+    
+    if (nums.length >= 2) {
+        for (length = 2; length <= nums.length; length++) {
+            let i = 0;
+            let j = length;
+            while (j <= nums.length) {
+                temp_subarray = nums.slice(i, j);
+                if (var_result < sum_of_array(temp_subarray)) {
+                    var_result = sum_of_array(temp_subarray);
+                    //result_array = temp_subarray;
+                }
+                i++;
+                j++;
+            }
+        }
+    }
+	
+	return var_result;
+};
